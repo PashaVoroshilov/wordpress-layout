@@ -26,7 +26,6 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-svgstore": "^9.0.0",
     "gulp-uglify": "^3.0.2",
-    "prettier": "^3.0.3",
     "sass": "^1.66.1"
   }
 }

@@ -6,6 +6,8 @@ const autoprefixer = require('autoprefixer')
 const postcss = require('gulp-postcss')
 const groupMediaQuaeries = require('gulp-group-css-media-queries')
 const cleanCSS = require('gulp-cleancss')
+const ttf2woff = require('gulp-ttf2woff')
+const ttf2woff2 = require('gulp-ttf2woff2')
 
 //for scripts
 const babel = require('gulp-babel')
@@ -23,6 +25,17 @@ const themeName = 'twentytwentythree'
 const paths = {
 	theme: `./dest/wp-content/themes/${themeName}/`,
 	themeAssets: `./dest/wp-content/themes/${themeName}/assets/`,
+}
+
+function fontsFormat() {
+	gulp
+		.src(paths.src + 'fonts/*.ttf')
+		.pipe(ttf2woff())
+		.pipe(gulp.dest(paths.src + 'fonts/'))
+	return gulp
+		.src(paths.src + 'fonts/*.ttf')
+		.pipe(ttf2woff2())
+		.pipe(gulp.dest(paths.src + 'fonts/'))
 }
 
 function fonts() {
@@ -122,6 +135,7 @@ function watcher() {
 	gulp.watch('./src/js/**/*.js', scripts)
 }
 
+exports.fontsFormat = fontsFormat
 exports.fonts = fonts
 exports.images = images
 exports.styles = styles
